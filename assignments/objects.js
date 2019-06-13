@@ -71,16 +71,17 @@ console.log(keven["email"]);
 console.log(gannie.name);
 // Antonietta's Gender
 
-console.log(antonietta["gender"]);
+console.log(antonietta["gender"]); //this is bracket notation
 
 // ==== Challenge 3: Object Methods ==== 
 // Give Kennan the ability to say "Hello, my name is Kennan!" Use the console.log provided as a hint.
 // console.log(kennan.speak());
 
 function speak(){
-  console.log("Hello, my name is " + kennan.name);
+  console.log("Hello, my name is " + kennan.name); //this.name is undefined here because 'this' is in the window/global scope
 }
 
+//console.log(kennan.speak()); // ERROR What would you do to make this work if speak is not a method on the object kennan?
 console.log(speak(kennan));
 
 // Antonietta loves math, give her the ability to multiply two numbers together and return the product. Use the console.log provided as a hint.
@@ -90,7 +91,17 @@ function multiplyNums(num1,num2){
   return num1 * num2;
 }
 
+
 console.log(multiplyNums(3,4));
+
+// Another way to solve that
+const product = function multiplyNums(num1, num2){  // Is this called a function expression?
+  return num1 * num2;
+}
+
+console.log(product(5,10));
+
+
 // === Great work! === Head over to the the arrays.js file or take a look at the stretch challenge
 
 // ==== Stretch Challenge: Nested Objects and the this keyword ==== 
@@ -100,16 +111,36 @@ console.log(multiplyNums(3,4));
 // 3. Nest a grandchild object in the child object with properties for name and age.  The name will be Sam and the age will be 30
 // 4. Give each of the objects the ability to speak their names using the this keyword.
 
-const parent = {}
+const parent = {
+  name: 'Susan',
+  age: 70,
+  speak: function(){
+    return `Hello, my name is ${this.name} and I am the parent`;
+  },
+  child: {
+    name: 'George',
+    age: 50,
+    speak: function(){
+      return `Hello, my name is ${this.name} and I am the child`;
+    },
+    child: {
+      name: 'Sam',
+      age: 30,
+      speak: function(){
+        return `Hello, my name is ${this.name} and I am the grandchild`;
+      }
+    }
+  }
+}
 
 // Log the parent object's name
-
+console.log(parent.name);
 // Log the child's age
-
+console.log(parent.child.age);
 // Log the name and age of the grandchild
-
+console.log(parent.child.child.name + ' is ' + parent.child.child.age);
 // Have the parent speak
-
+console.log(parent.speak());
 // Have the child speak
 
 // Have the grandchild speak
