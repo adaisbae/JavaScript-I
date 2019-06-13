@@ -142,5 +142,6 @@ console.log(parent.child.child.name + ' is ' + parent.child.child.age);
 // Have the parent speak
 console.log(parent.speak());
 // Have the child speak
-console.log()
+console.log(parent.child.speak());
 // Have the grandchild speak
+console.log(parent.child.child.speak());
